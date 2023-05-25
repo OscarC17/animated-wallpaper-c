@@ -1,3 +1,4 @@
+PREFIX = /usr/local
 OBJS = animatedwallpaper.o
 CFLAGS = -Wall
 INCLUDES = 
@@ -12,3 +13,11 @@ clean:
 
 .c.o:
 	${CC} ${CFLAGS} ${INCLUDES} -c $< ${LIBS}
+
+install: animatedwallpaper
+	mkdir -p $(DESTDIR)$(PREFIX)/bin
+	cp -f animatedwallpaper $(DESTDIR)$(PREFIX)/bin
+	chmod 755 $(DESTDIR)$(PREFIX)/bin/animatedwallpaper
+
+uninstall: 	
+	rm -f $(DESTDIR)$(PREFIX)/bin/animatedwallpaper

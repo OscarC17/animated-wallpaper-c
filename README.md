@@ -9,4 +9,19 @@ The images must be in bmp format named 1.bmp, 2.bmp, ... n.bmp; stored in the sa
   
 ```ffmpeg -i input.mp4 -vf scale=1920x1080,fps=30 %d.bmp```  
 
-Program tested on arch linux with suckless dwm
+Higher framerates run better on my machine.
+Program tested on arch linux with suckless dwm.
+
+Building:  
+
+```make```
+
+Install:
+
+```sudo make install```
+
+**Usage:**  
+
+```animatedwallpaper -i [folder with bmp images] -s [speed]```
+
+Default speed is 30 fps, lower speed values will increase playback speed. ('-s 0.5' for 60 fps, '-s 2' for 15 fps, etc.)
