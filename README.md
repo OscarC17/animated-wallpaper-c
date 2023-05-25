@@ -12,15 +12,19 @@ The images must be in bmp format named 1.bmp, 2.bmp, ... n.bmp; stored in the sa
 Higher framerates run better on my machine.
 Program tested on arch linux with suckless dwm.
 
-Building:  
+*Building:*  
 
 ```make```
 
-Install:
+*Install:*
 
 ```sudo make install```
 
-**Usage:**  
+*Uninstall:*
+
+```sudo make uninstall```
+
+*Usage:*  
 
 ```animatedwallpaper -i [folder with bmp images] -s [speed]```
 
