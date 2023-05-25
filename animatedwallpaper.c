@@ -8,6 +8,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <dirent.h>
+#include <string.h>
+#include <unistd.h>
+#include <getopt.h>
+#include <stdbool.h>
 
 typedef struct {
   Window root;
@@ -54,52 +59,55 @@ void setRootAtoms(Display *display, Monitor *monitor) {
 
 int main(int argc, char *argv[]) {
 
+	char * filedir = "./sample/bmp";
+	float speed = 1;
+
+    int opt;
+    while ((opt = getopt(argc, argv, "i:s:")) != -1) {
+        switch (opt) {
+        case 'i': filedir = optarg; break;
+        case 's': speed = atof(optarg); break;
+        default:
+            fprintf(stderr, "Usage: %s -i folder -s speed\n", argv[0]);
+            exit(EXIT_FAILURE);
+        }
+    }
+
+	//printf("filedir = %s\nspeed = %f\nloop = %d\n", filedir, speed, loop);
+
+	//printf("%s\n", filedir);
+
+	int dirsize = 0;
+	struct dirent *de; 
+
+	DIR *dr = opendir(filedir);
+
+	if (dr == NULL) {
+		printf("Could not open current directory" );
+		return 0;
+	}
+	while ((de = readdir(dr)) != NULL) {
+		if (de->d_name[0] != '.') {
+			dirsize++;
+		}
+	}
+	closedir(dr);    
+
+	Imlib_Image images[dirsize];
+
+
+	for (int i = 0; i < dirsize; i++) {
+		char imgstring[500] = " ";
+		sprintf(imgstring, "%s/%d.bmp", filedir, i + 1);
+		images[i] = imlib_load_image(imgstring);
+	}
+
+
+	int images_count = dirsize;
+
 #ifdef DEBUG
   fprintf(stdout, "Loading images");
 #endif
-  Imlib_Image images[] = {
-      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out1.bmp"),
-      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out2.bmp"),
-      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out3.bmp"),
-      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out4.bmp"),
-      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out5.bmp"),
-      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out6.bmp"),
-      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out7.bmp"),
-      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out8.bmp"),
-      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out9.bmp"),
-      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out10.bmp"),
-      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out11.bmp"),
-      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out12.bmp"),
-      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out13.bmp"),
-      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out14.bmp"),
-      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out15.bmp"),
-      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out16.bmp"),
-      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out17.bmp"),
-      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out18.bmp"),
-      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out19.bmp"),
-      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out20.bmp"),
-      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out21.bmp"),
-      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out22.bmp"),
-      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out23.bmp"),
-      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out24.bmp"),
-      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out25.bmp"),
-      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out26.bmp"),
-      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out27.bmp"),
-      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out28.bmp"),
-      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out29.bmp"),
-      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out30.bmp"),
-      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out31.bmp"),
-      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out32.bmp"),
-      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out33.bmp"),
-      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out34.bmp"),
-      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out35.bmp"),
-      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out36.bmp"),
-      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out37.bmp"),
-      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out38.bmp"),
-      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out39.bmp"),
-      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out40.bmp"),
-  };
-  int images_count = 40;
 
 #ifdef DEBUG
   fprintf(stdout, "Loading monitors\n");
@@ -161,28 +169,30 @@ int main(int argc, char *argv[]) {
 
   struct timespec timeout;
   timeout.tv_sec = 0;
-  timeout.tv_nsec = 33000000;
+  timeout.tv_nsec = 33000000 * speed; //~30fps by default
 
-  for (int cycle = 0; cycle < images_count; ++cycle) {
-    Imlib_Image current = images[cycle % images_count];
-    for (int monitor = 0; monitor < screen_count; ++monitor) {
-      Monitor *c_monitor = &monitors[monitor];
-      imlib_context_push(c_monitor->render_context);
-      imlib_context_set_dither(1);
-      imlib_context_set_blend(1);
-      imlib_context_set_image(current);
+  while (true) {
+	  for (int cycle = 0; cycle < images_count; ++cycle) {
+		Imlib_Image current = images[cycle % images_count];
+		for (int monitor = 0; monitor < screen_count; ++monitor) {
+		  Monitor *c_monitor = &monitors[monitor];
+		  imlib_context_push(c_monitor->render_context);
+		  imlib_context_set_dither(1);
+		  imlib_context_set_blend(1);
+		  imlib_context_set_image(current);
 
-      imlib_render_image_on_drawable(0, 0);
+		  imlib_render_image_on_drawable(0, 0);
 
-      setRootAtoms(display, c_monitor);
-      XKillClient(display, AllTemporary);
-      XSetCloseDownMode(display, RetainTemporary);
-      XSetWindowBackgroundPixmap(display, c_monitor->root, c_monitor->pixmap);
-      XClearWindow(display, c_monitor->root);
-      XFlush(display);
-      XSync(display, False);
-      imlib_context_pop();
-    }
-    nanosleep(&timeout, NULL);
+		  setRootAtoms(display, c_monitor);
+		  XKillClient(display, AllTemporary);
+		  XSetCloseDownMode(display, RetainTemporary);
+		  XSetWindowBackgroundPixmap(display, c_monitor->root, c_monitor->pixmap);
+		  XClearWindow(display, c_monitor->root);
+		  XFlush(display);
+		  XSync(display, False);
+		  imlib_context_pop();
+		}
+		nanosleep(&timeout, NULL);
+	  }
   }
 }
