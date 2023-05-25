@@ -59,7 +59,7 @@ void setRootAtoms(Display *display, Monitor *monitor) {
 
 int main(int argc, char *argv[]) {
 
-	char * filedir = "./sample/bmp";
+	char * filedir = "./sample";
 	float speed = 1;
 
     int opt;
