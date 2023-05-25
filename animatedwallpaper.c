@@ -58,16 +58,48 @@ int main(int argc, char *argv[]) {
   fprintf(stdout, "Loading images");
 #endif
   Imlib_Image images[] = {
-      imlib_load_image("/home/alecs/Repos/paperview/scenes/castle/out-0.bmp"),
-      imlib_load_image("/home/alecs/Repos/paperview/scenes/castle/out-1.bmp"),
-      imlib_load_image("/home/alecs/Repos/paperview/scenes/castle/out-2.bmp"),
-      imlib_load_image("/home/alecs/Repos/paperview/scenes/castle/out-3.bmp"),
-      imlib_load_image("/home/alecs/Repos/paperview/scenes/castle/out-4.bmp"),
-      imlib_load_image("/home/alecs/Repos/paperview/scenes/castle/out-5.bmp"),
-      imlib_load_image("/home/alecs/Repos/paperview/scenes/castle/out-6.bmp"),
-      imlib_load_image("/home/alecs/Repos/paperview/scenes/castle/out-7.bmp"),
+      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out1.bmp"),
+      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out2.bmp"),
+      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out3.bmp"),
+      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out4.bmp"),
+      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out5.bmp"),
+      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out6.bmp"),
+      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out7.bmp"),
+      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out8.bmp"),
+      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out9.bmp"),
+      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out10.bmp"),
+      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out11.bmp"),
+      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out12.bmp"),
+      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out13.bmp"),
+      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out14.bmp"),
+      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out15.bmp"),
+      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out16.bmp"),
+      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out17.bmp"),
+      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out18.bmp"),
+      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out19.bmp"),
+      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out20.bmp"),
+      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out21.bmp"),
+      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out22.bmp"),
+      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out23.bmp"),
+      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out24.bmp"),
+      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out25.bmp"),
+      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out26.bmp"),
+      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out27.bmp"),
+      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out28.bmp"),
+      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out29.bmp"),
+      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out30.bmp"),
+      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out31.bmp"),
+      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out32.bmp"),
+      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out33.bmp"),
+      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out34.bmp"),
+      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out35.bmp"),
+      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out36.bmp"),
+      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out37.bmp"),
+      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out38.bmp"),
+      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out39.bmp"),
+      imlib_load_image("/home/user/animated-wallpapers/MayWaterfall/bmp/out40.bmp"),
   };
-  int images_count = 8;
+  int images_count = 40;
 
 #ifdef DEBUG
   fprintf(stdout, "Loading monitors\n");
@@ -131,7 +163,7 @@ int main(int argc, char *argv[]) {
   timeout.tv_sec = 0;
   timeout.tv_nsec = 33000000;
 
-  for (int cycle = 0; cycle < 10; ++cycle) {
+  for (int cycle = 0; cycle < images_count; ++cycle) {
     Imlib_Image current = images[cycle % images_count];
     for (int monitor = 0; monitor < screen_count; ++monitor) {
       Monitor *c_monitor = &monitors[monitor];
