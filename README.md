@@ -3,16 +3,16 @@ ___Original proof of concept by [AlecsFerra](https://gist.github.com/AlecsFerra/
 
 Draws a series of bmp images to the window root to create an animated wallpaper, very resource intensive.  
 
-*Building:*  
+Building:  
 ```make```
 
-*Install:*
+Install:  
 ```sudo make install```
 
-*Uninstall:*
+Uninstall:  
 ```sudo make uninstall```
 
-*Usage:*  
+Usage:  
 ```animatedwallpaper -i [folder with bmp images] -s [speed]```
 
 Default speed is 30 fps, lower speed values will increase playback speed. ('-s 0.5' for 60 fps, '-s 2' for 15 fps, etc.)
