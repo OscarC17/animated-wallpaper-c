@@ -2,7 +2,7 @@ PREFIX = /usr/local
 OBJS = animatedwallpaper.o
 CFLAGS = -Wall
 INCLUDES = 
-LIBS = -L/usr/include -lImlib2 -lX11
+LIBS = -L/usr/include -lImlib2 -lX11  -lSDL2
 CC = gcc
 
 animatedwallpaper:${OBJS}

@@ -5,6 +5,8 @@
 #include <X11/Xatom.h>
 #include <X11/Xlib.h>
 
+#include <SDL2/SDL.h>
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -20,6 +22,11 @@ typedef struct {
   Imlib_Context *render_context;
   int width, height;
 } Monitor;
+
+typedef struct {
+	SDL_Texture** texture;
+	unsigned size;
+} Texture;
 
 void setRootAtoms(Display *display, Monitor *monitor) {
   Atom atom_root, atom_eroot, type;
@@ -95,11 +102,14 @@ int main(int argc, char *argv[]) {
 
 	Imlib_Image images[dirsize];
 
+	SDL_Surface surfaces[dirsize];
+
 
 	for (int i = 0; i < dirsize; i++) {
 		char imgstring[500] = " ";
 		sprintf(imgstring, "%s/%d.bmp", filedir, i + 1);
 		images[i] = imlib_load_image(imgstring);
+		//surfaces[i] = IMG_Load(imgstring);
 	}
 
 
