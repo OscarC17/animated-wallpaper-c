@@ -1,7 +1,7 @@
 # animated-wallpaper-c
 ___Original proof of concept by [AlecsFerra](https://gist.github.com/AlecsFerra/ef1cc008990319f3b676eb2d8aa89903)___
 
-Draws a series of bmp images to the window root to create an animated wallpaper, very resource intensive. Intended for use with minimalist Xorg-based window managers such as DWM.
+Draws a series of bmp images to the window root to create an animated wallpaper, very resource intensive. Intended for use with minimalist Xorg window managers such as DWM.
 
 Building:  
 ```make```
