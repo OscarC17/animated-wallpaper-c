@@ -1,5 +1,6 @@
 # animated-wallpaper-c
-___Original proof of concept by [AlecsFerra](https://gist.github.com/AlecsFerra/ef1cc008990319f3b676eb2d8aa89903)___
+___Original proof of concept by [AlecsFerra](https://gist.github.com/AlecsFerra/ef1cc008990319f3b676eb2d8aa89903), they are the creator, all credit goes to them for making this awesome script!___  
+_I just added a bit of file handling code and a makefile :)_
 
 Draws a series of bmp images to the window root to create an animated wallpaper, very resource intensive. Intended for use with minimalist Xorg window managers such as DWM.
 
