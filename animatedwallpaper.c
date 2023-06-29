@@ -102,7 +102,7 @@ int main(int argc, char *argv[]) {
 
 	Imlib_Image images[dirsize];
 
-	SDL_Surface surfaces[dirsize];
+	//SDL_Surface surfaces[dirsize];
 
 
 	for (int i = 0; i < dirsize; i++) {
@@ -184,6 +184,10 @@ int main(int argc, char *argv[]) {
   while (true) {
 	  for (int cycle = 0; cycle < images_count; ++cycle) {
 		Imlib_Image current = images[cycle % images_count];
+		if (current == NULL) {
+			printf("Found non-image file in target directory, stopping.\n");
+			exit(-1);
+		}
 		for (int monitor = 0; monitor < screen_count; ++monitor) {
 		  Monitor *c_monitor = &monitors[monitor];
 		  imlib_context_push(c_monitor->render_context);
